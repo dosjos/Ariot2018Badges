@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Models.Badge>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Visma ConsultIoTing's Badges</h2>
+<h4 style="text-align:center">
+    We now have @Model.Where(x => x.Achieved).Count()/@Model.Count() badges and @Model.Where(x => x.Achieved).Sum(x => x.Points)/@Model.Sum(x => x.Points) points</h4style="text-align:center">
+    <br />
+    <br />
+    <br />
+    <p>
+
+    </p>
+
+    @foreach (var item in Model)
+    {
+        <div style="float:left; text-align:center; width:230px; height:400px; border:medium;">
+            @if (item.Achieved) {
+            <b>@Html.DisplayFor(modelItem => item.Title)</b><br /><br />
+            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" /> <br />
+            @Html.DisplayFor(modelItem => item.Description) <br />
+            <span>-</span>    <br />
+            @Html.DisplayFor(modelItem => item.Points) 
+                 <span>Points</span>
+                        }
+            else
+            {
+                <b>Please Don't</b>
+            }
+        </div>
+
+    }
+
+    <script type="text/javascript">$('head').append('<meta http-equiv="refresh" content="30" />')</script>
+    
